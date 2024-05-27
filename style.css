@@ -1,0 +1,52 @@
+body {
+    background: #fff;
+    font-family: "Noto Sans", sans-serif;
+    color: #444;
+    font-size: 14px;
+}
+
+.title {
+    background-color: #217346;
+    text-align: center;
+    display: grid;
+    place-content: center;
+    color: #fff;
+    padding: 5px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(10, max-content);
+    background-color: #f3f2f1;
+}
+
+.menu div {
+    float: left;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.menu div:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    text-align: center;
+    width: 80px;
+    border: 1px solid gray;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.cell:focus {
+    border: 2px solid blue;
+}
+
+.cell.header {
+    background-color: lightgray;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excel Clone</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="title">Excel Clone</div>
+    <div class="menu">
+      <div>File</div>
+      <div>Home</div>
+      <div>Insert</div>
+      <div>Page Layout</div>
+      <div>Formulas</div>
+      <div>Data</div>
+      <div>Review</div>
+      <div>View</div>
+      <div>Help</div>
+    </div>
+    <div class="menu">
+      <div class="refreshButton" onclick="render()">Refresh</div>
+      <div class="boldButton" onclick="bold()">Bold</div>
+      <div class="italicsButton" onclick="italics()">Italics</div>
+      <div class="underlineButton" onclick="underline()">Underline</div>
+    </div>
+
+    <div id="spreadsheet"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
