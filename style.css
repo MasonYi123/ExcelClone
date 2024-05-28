@@ -3,6 +3,14 @@ body {
     font-family: "Noto Sans", sans-serif;
     color: #444;
     font-size: 14px;
+    margin-top: 85px;
+}
+
+.menuHeader {
+    position: fixed;
+    top: 0;
+    left: 5;
+    width: 100%;
 }
 
 .title {
