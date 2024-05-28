@@ -1,7 +1,7 @@
 // Initialise constants
 const spreadsheetContainer = document.querySelector("#spreadsheet");
-const ROWS = 100;
-const COLS = 100;
+const ROWS = 101;
+const COLS = 101;
 const spreadsheet = [];
 
 var selectedCell;
@@ -77,7 +77,7 @@ function initMatrix() {
     spreadsheet.push(row);
   }
   render();
-  console.log("Spreadsheet", spreadsheet); ////////////////////
+  console.log("Spreadsheet", spreadsheet); // For easier testing with the DOM
 }
 
 // Initialise` cells
@@ -162,6 +162,7 @@ function handleOnChange(cellData, cell) {
   } else {
     cell.cellData = cellData;
     updateDisplayValue(cellData, cell);
+    updateReferences(cellData, cell);
   }
 }
 
@@ -175,6 +176,7 @@ function parseEquation(cellData, cell) {
   let cells = [];
   let operators = [];
   let c = "";
+  cell.cellData = cellData;
 
   for (let i = 0; i < cellData.length; i++) {
     // Checks if current char is operator, then if parser has reached end of line, then alphanumeric
@@ -203,7 +205,6 @@ function parseEquation(cellData, cell) {
       operators[j]
     );
   }
-  cell.cellData = result;
   updateDisplayValue(result, cell);
   return result;
 }
@@ -258,7 +259,7 @@ function handleFunction(cellData, cell) {
     parseEquation(result, cell);
   } else if (cellData.startsWith("AVERAGE")) {
     // =AVERAGE function
-    // Slice only characters within bracket. Assumes that the user inputs data correctly e.g. =SUM(A1:A2)
+    // Slice only characters within bracket. Assumes that the user inputs data correctly e.g. =AVERAGE(A1:A2)
     let equation = cellData.slice(8, -1);
     // Split function by ":"
     let opIndex = equation.search(":");
@@ -294,9 +295,21 @@ function updateDisplayValue(displayVal, cell) {
   // Gets cellID and updates value
   cell.displayValue = displayVal;
   let cID = cell.colLet + cell.rowNum;
-  console.log(cID);
-  console.log(cell);
   document.getElementById(cID).value = displayVal;
+}
+
+// Updates any other cells referencing the selected cell
+function updateReferences(cellData, refCell) {
+  let result;
+  // Finds matching cellID within matrix
+  spreadsheet.forEach((row) => {
+    row.forEach((cell) => {
+      if (cell.cellData.includes(refCell.cellID)) {
+        parseEquation(cell.cellData, cell);
+      }
+    });
+  });
+  return result;
 }
 
 // Makes cell bold
