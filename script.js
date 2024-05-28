@@ -292,7 +292,10 @@ function handleFunction(cellData, cell) {
 // Updates display value for current cell
 function updateDisplayValue(displayVal, cell) {
   // Gets cellID and updates value
+  cell.displayValue = displayVal;
   let cID = cell.colLet + cell.rowNum;
+  console.log(cID);
+  console.log(cell);
   document.getElementById(cID).value = displayVal;
 }
 
