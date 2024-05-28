@@ -39,6 +39,17 @@ body {
     color: black;
 }
 
+.menu .boldButton {
+    font-weight: bold;
+}
+.menu .italicsButton {
+    font-family:'Times New Roman';
+    font-style: italic;
+}
+.menu .underlineButton {
+    text-decoration: underline;
+}
+
 .row {
     display: flex;
 }
